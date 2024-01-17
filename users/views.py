@@ -34,7 +34,7 @@ class RegisterView(CreateView):
         try:
             send_mail(
                 subject='Подтверждение регистрации',
-                message=f' Для получения полного доступа, введите в своем профиле код верификации: {verify_code}',
+                message=f' Для получения полного доступа, введите код верификации: {verify_code}',
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[new_user.email]
             )
