@@ -4,7 +4,7 @@
     <h5 class="display-4">{{ title }}</h5>
 </div>
 <div class="col-12 mb-5">
-    <a class="btn btn-outline-primary" href="{% url 'mailing:client_add' %}">Добавить клиента</a>
+    <a class="btn btn-outline-primary" href="{% url 'blog:blog_create' %}">Добавить блог</a>
 </div>
 <div class="col-12">
     <div class="row">
@@ -12,18 +12,19 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="my-0 font-weight-normal">{{ object.full_name|title }}</h3>
+                        <h3 class="my-0 font-weight-normal">{{ object.topic }}</h3>
                     </div>
                     <div class="card-body">
-                        <p>{{ object.email }}</p>
-                        {% if object.comment %}
-                            <p>{{ object.comment }}</p>
+                        <p>{{ object.preview }}</p>
+                        {% if object.content %}
+                            <p>{{ object.content }}</p>
                         {% endif %}
-                        {% if user == object.owner %}
-                            <a href="{% url 'mailing:client_edit' object.pk %}"
+                        {% if user.is_stuff %}
+                            <a href="{% url 'blog:blog_update' object.pk %}"
                             class="btn btn-sm btn-outline-secondary">Редактировать</a>
-                            <a href="{% url 'mailing:client_delete' object.pk %}"
-                            class="btn btn-sm btn-outline-secondary">Удалить</a>
+
+                            <a href="{% url 'blog:blog_delete' object.pk %}"
+                                class="btn btn-sm btn-outline-secondary">Удалить</a>
                         {% endif %}
                     </div>
                 </div>

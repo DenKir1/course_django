@@ -5,4 +5,4 @@ from blog.models import Blog
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('topic', 'public_date',)
+    list_display = ('topic', 'content', 'preview', 'views_count', 'public_date',)

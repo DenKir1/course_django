@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/media/logo_1.png">
-    <title>Kirdyankin Denis Store</title>
+    <title>Mailing</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -16,24 +16,32 @@
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Onion Blog</h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal">Onion Mailing</h5>
     <nav class="ms-5">
         {% if user.is_verify %}
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailing:home' %}">На главную</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailing:mailing_list' %}">Рассылки</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailing:message_list' %}">Сообщения</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailing:client_list' %}">Клиенты</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'blog:blog_list' %}">Блог</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'mailing:logs_list' %}">Логи</a>
         {% endif %}
-        {% if perms.mailing.set_is_active %}
-            <a class="p-2 btn btn-outline-primary" href="{% url 'users:list_view' %}">Пользователи</a>
+        {% if perms.users.set_is_active %}
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:users_list' %}">Пользователи</a>
         {% endif %}
         {% if user.is_authenticated %}
             <p>{{ user.email }}</p>
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:logout' %}">Выйти</a>
-            <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile' object.pk %}">Профиль</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile' user.pk %}">Профиль</a>
         {% else %}
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
+
+        {% endif %}
+        {% if user.is_authenticated and user.is_verify %}
+
+        {% else %}
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:verify' %}">Верификация</a>
         {% endif %}
     </nav>
 </div>
@@ -49,7 +57,7 @@
             <a href="#">Наверх</a>
         </p>
         <p>&copy; 2023</p>
-        <p> Посетите наш <a href="../../">Каталог</a></p>
+        <p> На <a href="../../">Вход</a></p>
     </div>
 </footer>
 

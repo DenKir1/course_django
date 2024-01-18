@@ -10,7 +10,7 @@
     <div class="row">
 
         {% for object in object_list %}
-            {% if user == object.owner or perms.mailing.view_mailing %}
+
             <div class="col-6 mb-3">
                 <div class="card">
                     <div class="card-header">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body">
                         <p>с {{ object.start_date }} по {{ object.end_date }}</p>
-                        <p>с периодичностью {{ object.interval }}</p>
+                        <p>с интервалом {{ object.interval }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{% url 'mailing:mailing_view' object.pk %}" type="button"
                                class="btn btn-sm btn-outline-primary">Подробнее</a>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
+
         {% endfor %}
 
     </div>

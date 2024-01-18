@@ -13,7 +13,7 @@
                         </tr>
                         <tr>
                             <td>Тема сообщения:</td>
-                            <td>{{ object.message.title }}</td>
+                            <td>{{ object.message.topic }}</td>
                         </tr>
                         <tr>
                             <td>Кому:</td>
@@ -35,13 +35,17 @@
                             <td>Текущий статус:</td>
                             <td>{{ object.status }}</td>
                         </tr>
+                        <tr>
+                            <td>Создатель:</td>
+                            <td>{{ object.owner }}</td>
+                        </tr>
                     </table>
 
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         {% if perms.mailing.set_is_activated %}
-                            <a href="{% url 'mailing:mailing_mod_edit' object.pk %}" type="button"
+                            <a href="{% url 'mailing:mailing_edit' object.pk %}" type="button"
                            class="btn btn-sm btn-outline-primary">Редактировать</a>
                         {% else %}
 

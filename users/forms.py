@@ -7,14 +7,14 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2',)
+        fields = ('email', 'phone', 'password1', 'password2',)
 
 
 class UpdateForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('avatar', 'verify_pass')
+        fields = ('first_name', 'last_name', 'phone', 'avatar')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

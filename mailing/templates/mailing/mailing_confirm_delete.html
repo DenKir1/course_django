@@ -9,7 +9,7 @@
                             {% csrf_token %}
                             <p>Хотите удалить рассылку "{{ object.name }}"?</p>
                             <button type="submit" class="btn btn-primary">Подтвердить</button>
-                            <a href="{% url 'sendmail:home' %}" class="btn btn-warning">Отмена</a>
+                            <a href="{% url 'mailing:home' %}" class="btn btn-warning">Отмена</a>
 
                         </form>
                     </div>

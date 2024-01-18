@@ -29,6 +29,7 @@ LOG_CHOICES = [
 class Client(models.Model):
     full_name = models.CharField(max_length=150, verbose_name='ФИО')
     email = models.EmailField(unique=True, verbose_name='Почта')
+    phone = models.CharField(max_length=20, verbose_name='Телефон', **NULLABLE)
     comment = models.TextField(verbose_name='Комментарий', **NULLABLE)
     owner = models.ForeignKey(users.models.User, on_delete=models.CASCADE, null=True, verbose_name='Отправитель')
 
@@ -38,6 +39,9 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'клиент'
         verbose_name_plural = 'клиенты'
+        permissions = [
+            ('client_delete', 'Может удалять клиентов')
+        ]
 
 
 class Message(models.Model):
@@ -46,7 +50,7 @@ class Message(models.Model):
     owner = models.ForeignKey(users.models.User, on_delete=models.CASCADE, null=True, verbose_name='Владелец сообщения')
 
     def __str__(self):
-        return self.title
+        return self.topic
 
     class Meta:
         verbose_name = 'сообщение'
@@ -60,8 +64,8 @@ class Mailing(models.Model):
     start_date = models.DateTimeField(default=timezone.now, verbose_name='Начало рассылки')
     next_date = models.DateTimeField(default=timezone.now, verbose_name='Следующая рассылка')
     end_date = models.DateTimeField(verbose_name='Конец рассылки')
-    interval = models.CharField(default='Once', max_length=10, choices=INTERVAL_CHOICES, verbose_name='Периодичность')
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, verbose_name='Статус')
+    interval = models.CharField(default='once', max_length=10, choices=INTERVAL_CHOICES, verbose_name='Периодичность')
+    status = models.CharField(default='created', max_length=10, choices=STATUS_CHOICES, verbose_name='Статус')
     owner = models.ForeignKey(users.models.User, on_delete=models.CASCADE, null=True, verbose_name='Владелец рассылки')
 
     is_activated = models.BooleanField(default=True, choices=ACTIVE_CHOICES, verbose_name='Активность')
@@ -75,7 +79,8 @@ class Mailing(models.Model):
         ordering = ('start_date',)
 
         permissions = [
-            ('set_is_activated', 'Может отключать рассылку')
+            ('set_is_activated', 'Может отключать рассылку'),
+            ('can_view', 'Может просматривать рассылки')
         ]
 
 

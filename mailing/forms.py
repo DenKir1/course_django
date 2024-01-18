@@ -17,7 +17,7 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Mailing
-        exclude = ('next_date', 'owner', 'is_activated',)
+        exclude = ('next_date', 'owner', 'status', 'is_activated',)
 
         widgets = {
             'start_date': DateTimeInput(attrs={'placeholder': 'ДД.ММ.ГГГГ ЧЧ:ММ:СС', 'type': 'datetime-local'}),

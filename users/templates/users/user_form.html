@@ -8,9 +8,18 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="submit" class="btn btn-primary">
+                            {% if object %}
+                                Изменить
+                            {% else %}
+                                Сохранить
+                            {% endif %}
+                        </button>
 
                     </form>
+                </div>
+                <div class="card-footer">
+                    <a class="p-2 btn btn-outline-primary" href="{% url 'users:get_password' %}">Получить новый пароль на почту</a>
                 </div>
             </div>
         </div>
