@@ -101,7 +101,8 @@ def get_password(request):
         request.user.set_password(new_pass)
         request.user.save()
         print(f'{request.user.email} - получил новый пароль - {new_pass}')
-    print(f'{request.user.email} не удалось изменить пароль')
+    else:
+        print(f'{request.user.email} не удалось изменить пароль')
 
     return redirect(reverse('users:login'))
 

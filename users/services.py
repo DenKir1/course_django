@@ -15,6 +15,7 @@ def send_sms(phone='79998887766', message='HOHO'):
         return response
     except requests.exceptions.ConnectionError:
         print('No connection')
+        return {"status": False}
 
 
 def send_mail_user(subject='', message='', email_list=[]):
