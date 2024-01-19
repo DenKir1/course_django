@@ -18,6 +18,11 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
         'title': 'Создание рассылки'
     }
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
     def form_valid(self, form, *args, **kwargs):
         new_mailing = form.save(commit=False)
         new_mailing.owner = self.request.user
