@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 
 from blog.models import Blog
 
-from mailing.forms import MailingForm, MessageForm, ClientForm, MailingModeratorForm
+from mailing.forms import MailingForm, MessageForm, ClientForm, MailingModeratorForm, MailingUpdateForm
 from mailing.models import Message, Mailing, Client, Logs
 from mailing.services import get_cache_mailing_active, get_cache_mailing_count
 
@@ -39,6 +39,11 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
             return MailingForm
         elif self.request.user.has_perm('mailing.set_is_activated'):
             return MailingModeratorForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'request': self.request})
+        return kwargs
 
 
 class MailingListView(LoginRequiredMixin, ListView):
@@ -89,7 +94,7 @@ class MailingDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         _user = self.request.user
-        if self.request.user == self.get_object() or _user.has_perms(['mailing.can_delete', ]):
+        if _user == self.get_object().owner or _user.has_perms(['mailing.can_delete', ]):
             return True
         return self.handle_no_permission()
 
