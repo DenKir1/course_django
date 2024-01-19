@@ -40,11 +40,6 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
         elif self.request.user.has_perm('mailing.set_is_activated'):
             return MailingModeratorForm
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({'request': self.request})
-        return kwargs
-
 
 class MailingListView(LoginRequiredMixin, ListView):
     model = Mailing
