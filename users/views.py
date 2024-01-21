@@ -34,7 +34,7 @@ class RegisterView(CreateView):
             subject='Подтверждение регистрации',
             message=f' Для получения полного доступа, введите код активации: {verify_code}',
             email_list=[new_user.email]
-            )
+        )
 
         result_sms = send_sms(phone=new_user.phone, message=verify_phone)
 
@@ -57,7 +57,7 @@ class VerifyView(TemplateView):
             user_code.save()
             result_send = send_mail_user(
                                 subject='Успешная активация',
-                                message=f' Код активации принят',
+                                message='Код активации принят',
                                 email_list=[user_code.email]
                         )
             print(result_send)

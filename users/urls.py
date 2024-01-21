@@ -16,4 +16,4 @@ urlpatterns = [
     path('users_list/', UserListView.as_view(), name='users_list'),
     path('get_password/', get_password, name='get_password'),
 
-    ]
+]
