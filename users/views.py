@@ -56,10 +56,10 @@ class VerifyView(TemplateView):
             user_code.is_active = True
             user_code.save()
             result_send = send_mail_user(
-                                subject='Успешная активация',
-                                message='Код активации принят',
-                                email_list=[user_code.email]
-                        )
+                subject='Успешная активация',
+                message='Код активации принят',
+                email_list=[user_code.email]
+            )
             print(result_send)
             return redirect('users:login')
         if user_phone:
