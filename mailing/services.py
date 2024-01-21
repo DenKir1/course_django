@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import pytz
 from django.core.cache import cache
-from django.core.mail import send_mail
+#  from django.core.mail import send_mail
 from django.conf import settings
 from mailing.models import Mailing, Logs
 from users.services import send_sms, send_mail_user
@@ -51,7 +51,7 @@ def my_job():
 
             mailing.save()
             print(f'Рассылка {mailing.name} отправлена')
-            #Рассылка по СМС/ не проверял на реальном номере
+            # Рассылка по СМС/ не проверял на реальном номере
             phone_list = []
             for client in mailing.mail_to.all():
                 if client.phone:

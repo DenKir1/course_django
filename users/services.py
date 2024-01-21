@@ -18,7 +18,7 @@ def send_sms(phone='79998887766', message='HOHO'):
         return {"status": False}
 
 
-def send_mail_user(subject='', message='', email_list=[]):
+def send_mail_user(subject='', message='', email_list=''):
     try:
         result = send_mail(
             subject=f'{subject}',
@@ -26,10 +26,8 @@ def send_mail_user(subject='', message='', email_list=[]):
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=email_list
         )
-        print(f'Рассылка {email} прошла успешно')
+        print(f'Рассылка {email_list} прошла успешно')
         return result == 1
     except Exception as exc:
         print(f'Ошибка при отправке почты - {exc}')
         return False
-
-

@@ -9,7 +9,7 @@ from users.models import User
 from users.services import send_sms, send_mail_user
 
 
-#class UserLogoutView(LogoutView): #Не работает
+# class UserLogoutView(LogoutView): # Не работает
 #    success_url = reverse_lazy('users:login')
 def logout_view(request):
     logout(request)
@@ -47,7 +47,8 @@ class RegisterView(CreateView):
 class VerifyView(TemplateView):
     template_name = 'users/verify.html'
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
         verify_pass = request.POST.get('verify_pass')
         user_code = User.objects.filter(verify_code=verify_pass).first()
         user_phone = User.objects.filter(verify_phone=verify_pass).first()

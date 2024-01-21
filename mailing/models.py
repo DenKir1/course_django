@@ -38,7 +38,7 @@ class Client(models.Model):
 
     class Meta:
         verbose_name = 'клиент'
-        verbose_name_plural = 'клиенты'
+        verbose_name_plural = 'клиентов'
         permissions = [
             ('client_delete', 'Может удалять клиентов')
         ]
@@ -54,7 +54,7 @@ class Message(models.Model):
 
     class Meta:
         verbose_name = 'сообщение'
-        verbose_name_plural = 'сообщения'
+        verbose_name_plural = 'сообщений'
 
 
 class Mailing(models.Model):
@@ -75,7 +75,7 @@ class Mailing(models.Model):
 
     class Meta:
         verbose_name = 'рассылка'
-        verbose_name_plural = 'рассылки'
+        verbose_name_plural = 'рассылок'
         ordering = ('start_date',)
 
         permissions = [
@@ -94,4 +94,4 @@ class Logs(models.Model):
 
     class Meta:
         verbose_name = 'Лог сообщения'
-        verbose_name_plural = 'Логи сообщений'
+        verbose_name_plural = 'Логов сообщений'
