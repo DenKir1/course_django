@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.decorators.cache import cache_page
 
 from blog.apps import BlogConfig
-from blog.views import *
+from blog.views import BlogListView, BlogCreateView, BlogUpdateView, BlogDeleteView
 
 app_name = BlogConfig.name
 
